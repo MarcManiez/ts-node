@@ -77,7 +77,6 @@ const debugFn = shouldDebug ?
   } :
   <T, U>(_: string, fn: (arg: T) => U) => fn
 
-
 /**
  * Eval state management.
  * @internal
@@ -1179,7 +1178,6 @@ const RECOVERY_CODES: Set<number> = new Set([
   1161, // "Unterminated regular expression literal."
   2355 // "A function whose declared type is neither 'void' nor 'any' must return a value."
 ])
-
 
 /**
  * Check if a function can recover gracefully.
