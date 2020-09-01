@@ -1,4 +1,5 @@
 import { relative, basename, extname, resolve, dirname, join } from 'path'
+import { start, Recoverable, REPLServer } from 'repl'
 import sourceMapSupport = require('source-map-support')
 import * as ynModule from 'yn'
 import { diffLines } from 'diff'
@@ -1071,7 +1072,11 @@ export function _eval (service: Register, state: EvalState, input: string) {
 /**
  * Start a CLI REPL.
  */
-export function startRepl (service: Register, state: EvalState = new EvalState(join(process.cwd(), EVAL_FILENAME)), code?: string) {
+export function startRepl (
+  service: Register,
+  state: EvalState = new EvalState(join(process.cwd(), EVAL_FILENAME)),
+  code?: string
+): REPLServer {
   // Eval incoming code before the REPL starts.
   if (code) {
     try {
@@ -1166,6 +1171,8 @@ export function startRepl (service: Register, state: EvalState = new EvalState(j
       process.exit(1)
     })
   }
+
+  return repl
 }
 
 const RECOVERY_CODES: Set<number> = new Set([

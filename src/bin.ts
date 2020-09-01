@@ -5,7 +5,17 @@ import { inspect } from 'util'
 import Module = require('module')
 import arg = require('arg')
 import { readFileSync, statSync } from 'fs'
-import { VERSION, TSError, parse, Register, register, startRepl, _eval, EvalState, EVAL_FILENAME } from './index'
+import {
+  _eval,
+  EVAL_FILENAME,
+  EvalState,
+  parse,
+  Register,
+  register,
+  startRepl,
+  TSError,
+  VERSION
+} from './index'
 
 /**
  * Main `bin` functionality.
