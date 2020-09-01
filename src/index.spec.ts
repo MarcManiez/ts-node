@@ -353,8 +353,8 @@ describe('ts-node', function () {
       })
 
       cp.stdin!.end('console.log("123")\n')
-
     })
+
     it('REPL has command to get type information', function (done) {
       const cp = exec(`${cmd} --interactive`, function (err, stdout) {
         expect(err).to.equal(null)
@@ -368,6 +368,15 @@ describe('ts-node', function () {
       })
 
       cp.stdin!.end('\nconst a = 123\n.type a')
+    })
+
+    it('should execute the repl when called from a file', function (done) {
+      exec(`${BIN_PATH} ./tests/repl.ts`, function (err, stdout) {
+        expect(err?.signal).to.equal('SIGTERM')
+        expect(stdout).to.equal('> ')
+
+        return done()
+      })
     })
 
     it('should support require flags', function (done) {
@@ -951,17 +960,6 @@ describe('ts-node', function () {
       exec(`${BIN_PATH} ./tests/esm-err-require-esm/index.js`, function (err, stdout) {
         expect(err).to.equal(null)
         expect(stdout).to.equal('CommonJS\n')
-
-        return done()
-      })
-    })
-  })
-
-  describe('repl', () => {
-    it('should execute the repl when called from a file', function (done) {
-      exec(`${BIN_PATH} ./tests/repl.ts`, function (err, stdout) {
-        expect(err?.signal).to.equal('SIGTERM')
-        expect(stdout).to.equal('> ')
 
         return done()
       })
