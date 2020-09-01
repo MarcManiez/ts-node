@@ -372,7 +372,7 @@ describe('ts-node', function () {
 
     it('should execute the repl when called from a file', function (done) {
       exec(`${BIN_PATH} ./tests/repl.ts`, function (err, stdout) {
-        expect(err?.signal).to.equal('SIGTERM')
+        expect(err && err.signal).to.equal('SIGTERM')
         expect(stdout).to.equal('> ')
 
         return done()
