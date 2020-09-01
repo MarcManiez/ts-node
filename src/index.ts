@@ -1,5 +1,4 @@
-import { relative, basename, extname, resolve, dirname, join, isAbsolute } from 'path'
-import { start, Recoverable } from 'repl'
+import { relative, basename, extname, resolve, dirname, join } from 'path'
 import sourceMapSupport = require('source-map-support')
 import * as ynModule from 'yn'
 import { diffLines } from 'diff'
